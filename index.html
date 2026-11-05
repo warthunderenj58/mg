@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7dce8">
+<title>Aşkım, sana küçük bir oyunum var 💗</title>
+<style>
+:root{--pink:#f6c9dc;--rose:#d96f9c;--deep:#713d59;--ink:#58394b;--cream:#fff9fc;--line:#f0d5e1}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:ui-rounded,"Segoe UI",system-ui,sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,#fff 0 8%,transparent 30%),linear-gradient(145deg,#fff5fa,#f9dce9 55%,#fceef4);display:grid;place-items:center;padding:22px;overflow-x:hidden}
+body:before,body:after{content:"♡";position:fixed;color:#e9a8c4;opacity:.25;font-size:150px;pointer-events:none;z-index:0}
+body:before{top:2%;left:2%;transform:rotate(-18deg)}body:after{right:1%;bottom:0;transform:rotate(18deg)}
+.shell{width:min(100%,680px);position:relative;z-index:1}
+.card{background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.9);border-radius:28px;padding:clamp(22px,5vw,42px);box-shadow:0 18px 60px #a95e7c20;backdrop-filter:blur(8px)}
+.top{text-align:center;margin-bottom:24px}
+.kicker{letter-spacing:.18em;text-transform:uppercase;font-size:11px;font-weight:800;color:#bd7294}
+h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(32px,7vw,49px);line-height:1.12;margin:12px 0;color:#874b68}
+h2{font-family:Georgia,serif;font-weight:500;font-size:clamp(25px,5vw,34px);margin:8px 0 12px;color:#874b68}
+p{line-height:1.7;color:#76566a}
+.heart{font-size:34px;display:inline-block;animation:pulse 1.8s infinite}
+@keyframes pulse{50%{transform:scale(1.16)}}
+.progress{height:7px;background:#f7e6ee;border-radius:99px;overflow:hidden;margin:0 0 24px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#e7a1bf,#c96691);border-radius:99px;transition:width .35s}
+.step-label{text-align:center;font-size:12px;color:#b17894;font-weight:700;margin-bottom:10px}
+.panel{text-align:center}
+.illustration{font-size:46px;margin:4px 0 10px}
+.question{font-size:18px;font-weight:700;color:#71465d;margin:18px 0}
+.choices{display:grid;gap:11px;margin-top:22px}
+button{font:inherit;cursor:pointer;border:0;border-radius:15px;padding:14px 18px;transition:transform .15s,box-shadow .15s}
+button:hover{transform:translateY(-2px);box-shadow:0 8px 20px #a95e7c20}
+.choice{background:#fff4f8;border:1px solid #f0d4e1;color:#784b62;text-align:left}
+.choice:hover{background:#ffeaf2}
+.primary{background:linear-gradient(135deg,#dc8eaf,#c96994);color:white;font-weight:800;box-shadow:0 8px 20px #c9699430}
+.secondary{background:#fff;border:1px solid var(--line);color:#9a6680}
+input{width:100%;padding:15px 16px;border:1px solid #e9c8d8;border-radius:14px;background:#fffafd;font:inherit;color:var(--ink);outline:none;margin:8px 0 14px}
+input:focus{border-color:#d783a8;box-shadow:0 0 0 3px #f7dce8}
+.feedback{min-height:26px;font-size:14px;font-weight:700;color:#b45e82;margin-top:12px}
+.hidden{display:none!important}
+.letter{background:linear-gradient(150deg,#fffafd,#fff0f6);border:1px solid #f1d4e1;border-radius:20px;padding:24px;text-align:left;margin:22px 0}
+.letter p{font-family:Georgia,serif;font-size:18px;color:#71465d}
+.signature{text-align:right;color:#bd7294;font-family:Georgia,serif;font-style:italic}
+.footer{text-align:center;font-size:12px;color:#b17a94;margin-top:18px}
+.sparkle{font-size:23px;letter-spacing:8px;color:#d98cad}
+@media(max-width:420px){body{padding:12px}.card{border-radius:22px;padding:23px 18px}.choice{padding:13px}}
+</style>
+</head>
+<body>
+<main class="shell">
+<section class="card">
+  <header class="top">
+    <div class="kicker">Sadece sana özel küçük bir sürpriz</div>
+    <div class="heart">♡</div>
+    <h1>Aşkım, sana küçük bir oyunum var...</h1>
+    <p>Birlikte yaşadığımız birkaç güzel anının izini süreceğiz. Acele yok; bu oyun sadece ikimize ait. 💗</p>
+  </header>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="step-label" id="stepLabel">BAŞLANGIÇ</div>
+
+  <section class="panel" id="start">
+    <div class="illustration">🌷💌</div>
+    <h2>Hazır mısın?</h2>
+    <p>Önünde dört küçük durak var. Her biri bizim hikâyemizden bir parça.</p>
+    <button class="primary" id="begin">Hikâyemize başla ♥</button>
+  </section>
+
+  <section class="panel hidden" id="stage1">
+    <div class="illustration">📍</div><h2>İlk buluşmamız</h2>
+    <p class="question">İlk buluşmamızda seni nerede beklemiştim?</p>
+    <div class="choices">
+      <button class="choice" data-answer="wrong">Tunalı Hilmi'de</button>
+      <button class="choice" data-answer="correct">Kızılay Güven Park'ta</button>
+      <button class="choice" data-answer="wrong">Kuğulu Park'ta</button>
+    </div><div class="feedback" id="feedback1"></div>
+  </section>
+
+  <section class="panel hidden" id="stage2">
+    <div class="illustration">💐</div><h2>İlk çiçekler</h2>
+    <p class="question">İlk buluşmamızda sana hangi çiçeklerden oluşan bir buket vermiştim?</p>
+    <div class="choices">
+      <button class="choice" data-answer="wrong">Kırmızı güller</button>
+      <button class="choice" data-answer="correct">Pembe-beyaz şakayıklar</button>
+      <button class="choice" data-answer="wrong">Beyaz papatyalar</button>
+    </div><div class="feedback" id="feedback2"></div>
+  </section>
+
+  <section class="panel hidden" id="stage3">
+    <div class="illustration">🏡</div><h2>Sonra nereye gittik?</h2>
+    <p class="question">Güven Park'tan sonra birlikte hangi mahalleye gitmiştik?</p>
+    <div class="choices">
+      <button class="choice" data-answer="wrong">Hamamönü</button>
+      <button class="choice" data-answer="correct">Saraçoğlu Mahallesi</button>
+      <button class="choice" data-answer="wrong">Bahçelievler</button>
+    </div><div class="feedback" id="feedback3"></div>
+  </section>
+
+  <section class="panel hidden" id="stage4">
+    <div class="illustration">⏳</div><h2>Zaman nasıl geçti?</h2>
+    <p class="question">Saraçoğlu'nda o gün yaklaşık kaç saat sohbet etmiştik?</p>
+    <div class="choices">
+      <button class="choice" data-answer="wrong">1 saat</button>
+      <button class="choice" data-answer="wrong">3 saat</button>
+      <button class="choice" data-answer="correct">6 saat</button>
+    </div><div class="feedback" id="feedback4"></div>
+  </section>
+
+  <section class="panel hidden" id="stage5">
+    <div class="illustration">☕</div><h2>Küçük bir detay</h2>
+    <p class="question">O kadar uzun sohbet ederken ne içmiştik?</p>
+    <div class="choices">
+      <button class="choice" data-answer="correct">Aslında hiçbir şey içmemiştik.</button>
+      <button class="choice" data-answer="wrong">Kahve içmiştik.</button>
+      <button class="choice" data-answer="wrong">Çay içmiştik.</button>
+    </div><div class="feedback" id="feedback5"></div>
+  </section>
+
+  <section class="panel hidden" id="stage6">
+    <div class="illustration">💞</div><h2>Bizim küçük dilimiz</h2>
+    <p class="question">Birbirimize taktığımız lakaplardan birini yazar mısın?</p>
+    <input id="nickname" maxlength="60" placeholder="Aklına gelen lakabı yaz..." autocomplete="off">
+    <button class="primary" id="nicknameNext">Bu anıyı da hatırladım ♥</button>
+    <div class="feedback" id="feedback6"></div>
+  </section>
+
+  <section class="panel hidden" id="stage7">
+    <div class="illustration">🧩</div><h2>Birlikte biriktirdiklerimiz</h2>
+    <p class="question">Sence ilişkimizde en kıymetli şeylerden biri ne?</p>
+    <div class="choices">
+      <button class="choice" data-answer="correct">Birbirimizi dinlemek ve anlamaya çalışmak.</button>
+      <button class="choice" data-answer="correct">Birlikte yeni anılar biriktirmek.</button>
+      <button class="choice" data-answer="correct">Küçük şeylerde bile beraber gülebilmek.</button>
+    </div><div class="feedback" id="feedback7"></div>
+  </section>
+
+  <section class="panel hidden" id="stage8">
+    <div class="illustration">🗝️</div><h2>Son küçük seçim</h2>
+    <p class="question">Hikâyemizin bundan sonrasında ne olsun?</p>
+    <div class="choices">
+      <button class="choice" id="choiceA">Birbirimizi daha çok dinleyelim. 💗</button>
+      <button class="choice" id="choiceB">Güzel günler biriktirmeye devam edelim. 🌷</button>
+    </div><p class="feedback" id="feedback8"></p>
+  </section>
+
+  <section class="panel hidden" id="final">
+    <div class="sparkle">✦ ✧ ♥ ✧ ✦</div>
+    <h2>Sana söylemek istediğim şey...</h2>
+    <p>Bütün cevaplardan daha önemli olan, sana gerçekten anlatmak istediğim.</p>
+    <div class="letter">
+      <p><strong>Aşkım,</strong></p>
+      <p>Seni seviyorum. Bazen birbirimizi anlamakta zorlansak da ben bizim hikâyemizden vazgeçmek istemiyorum. Seni kırdığım zamanlar için özür dilerim. Yeniden birbirimizi anlamak ve güzel günler biriktirmek istiyorum.</p>
+      <p>Bu oyunu seni gülümsetmek ve sana ne kadar değer verdiğimi hatırlatmak için hazırladım. Her şeyi bir anda çözmek zorunda değiliz. Yeter ki birbirimizi duymaya ve anlamaya çalışalım.</p>
+      <div class="signature">Seni seven... ♥</div>
+    </div>
+    <div class="heart">♡</div>
+    <p>İyi ki bizim hikâyemiz var.</p>
+    <button class="secondary" id="restart">Baştan oyna</button>
+  </section>
+</section>
+<div class="footer">Küçük bir internet sayfası, kocaman bir gönül. ♡</div>
+</main>
+<script>
+const stages=["start","stage1","stage2","stage3","stage4","stage5","stage6","stage7","stage8","final"];
+let current=0;
+const bar=document.getElementById("bar");
+const label=document.getElementById("stepLabel");
+function show(index){
+  stages.forEach((id,i)=>document.getElementById(id).classList.toggle("hidden",i!==index));
+  current=index;
+  bar.style.width=(index===0?0:index===9?100:(index/9)*100)+"%";
+  label.textContent=index===0?"BAŞLANGIÇ":index===9?"SON MEKTUP":`DURAK ${index} / 8`;
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.getElementById("begin").addEventListener("click",()=>show(1));
+function attachQuiz(stageId,feedbackId,nextIndex){
+  document.querySelectorAll(`#${stageId} .choice`).forEach(button=>{
+    button.addEventListener("click",()=>{
+      const feedback=document.getElementById(feedbackId);
+      if(button.dataset.answer==="correct"){
+        feedback.textContent="Aynen öyle! Bu anı hâlâ çok güzel. 💗";
+        setTimeout(()=>show(nextIndex),850);
+      }else{
+        feedback.textContent="Bir daha düşün bakalım... Küçük bir ipucu: Bu anı bizim için özel. ☺";
+      }
+    });
+  });
+}
+attachQuiz("stage1","feedback1",2);
+attachQuiz("stage2","feedback2",3);
+attachQuiz("stage3","feedback3",4);
+attachQuiz("stage4","feedback4",5);
+attachQuiz("stage5","feedback5",6);
+document.getElementById("nicknameNext").addEventListener("click",()=>{
+  const value=document.getElementById("nickname").value.trim();
+  const feedback=document.getElementById("feedback6");
+  if(!value){feedback.textContent="Bir lakap yazmadan geçemeyiz. 💞";return;}
+  feedback.textContent="İşte bu, sadece bize ait bir şey. ♥";
+  setTimeout(()=>show(7),800);
+});
+attachQuiz("stage7","feedback7",8);
+function finish(){
+  document.getElementById("feedback8").textContent="Ben de tam olarak bunu istiyorum. ♥";
+  setTimeout(()=>show(9),850);
+}
+document.getElementById("choiceA").addEventListener("click",finish);
+document.getElementById("choiceB").addEventListener("click",finish);
+document.getElementById("restart").addEventListener("click",()=>{
+  document.getElementById("nickname").value="";
+  ["feedback1","feedback2","feedback3","feedback4","feedback5","feedback6","feedback7","feedback8"].forEach(id=>document.getElementById(id).textContent="");
+  show(0);
+});
+</script>
+</body>
+</html>
